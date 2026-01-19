@@ -1,6 +1,7 @@
-package com.simhyeonmin.assignment.domain.feedback.controller
+package com.simhyeonmin.assignment.presentation.feedback
 
-import com.simhyeonmin.assignment.domain.feedback.dto.FeedbackDto
+import com.simhyeonmin.assignment.domain.feedback.Feedback
+import com.simhyeonmin.assignment.presentation.feedback.dto.FeedbackDto
 import com.simhyeonmin.assignment.domain.feedback.service.FeedbackService
 import com.simhyeonmin.assignment.global.response.ApiResponse
 import io.swagger.v3.oas.annotations.Operation
@@ -9,7 +10,14 @@ import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 
 /**
  * 대화 품질에 대한 사용자 피드백을 관리하는 API 컨트롤러.
@@ -38,7 +46,7 @@ class FeedbackController(
         @RequestBody @Valid request: FeedbackDto.CreateRequest
     ): ResponseEntity<ApiResponse<FeedbackDto.FeedbackResponse>> {
         val feedback = feedbackService.createFeedback(authorization, chatId, request)
-        return ResponseEntity.ok(ApiResponse.onSuccess(feedback.toResponse()))
+        return ResponseEntity.ok(ApiResponse.Companion.onSuccess(feedback.toResponse()))
     }
 
     /**
@@ -59,7 +67,7 @@ class FeedbackController(
         @RequestParam(required = false) positive: Boolean?
     ): ResponseEntity<ApiResponse<Page<FeedbackDto.FeedbackResponse>>> {
         val feedbackPage = feedbackService.getFeedbacks(authorization, page, size, sort, positive)
-        return ResponseEntity.ok(ApiResponse.onSuccess(feedbackPage.map { it.toResponse() }))
+        return ResponseEntity.ok(ApiResponse.Companion.onSuccess(feedbackPage.map { it.toResponse() }))
     }
 
     /**
@@ -80,11 +88,11 @@ class FeedbackController(
         @RequestBody @Valid request: FeedbackDto.UpdateStatusRequest
     ): ResponseEntity<ApiResponse<FeedbackDto.FeedbackResponse>> {
         val feedback = feedbackService.updateFeedbackStatus(feedbackId, request)
-        return ResponseEntity.ok(ApiResponse.onSuccess(feedback.toResponse()))
+        return ResponseEntity.ok(ApiResponse.Companion.onSuccess(feedback.toResponse()))
     }
 
     // Feedback 엔티티를 FeedbackResponse DTO로 변환하는 확장 함수
-    private fun com.simhyeonmin.assignment.domain.feedback.Feedback.toResponse() = FeedbackDto.FeedbackResponse(
+    private fun Feedback.toResponse() = FeedbackDto.FeedbackResponse(
         feedbackId = this.id!!,
         userId = this.user.id!!,
         chatId = this.chat.id!!,

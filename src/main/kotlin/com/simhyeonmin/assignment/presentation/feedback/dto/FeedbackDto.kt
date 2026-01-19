@@ -1,4 +1,4 @@
-package com.simhyeonmin.assignment.domain.feedback.dto
+package com.simhyeonmin.assignment.presentation.feedback.dto
 
 import com.simhyeonmin.assignment.global.enums.FeedbackStatus
 import io.swagger.v3.oas.annotations.media.Schema

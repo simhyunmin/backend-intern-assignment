@@ -3,7 +3,7 @@ package com.simhyeonmin.assignment.domain.feedback.service
 import com.simhyeonmin.assignment.domain.chat.ChatRepository
 import com.simhyeonmin.assignment.domain.feedback.Feedback
 import com.simhyeonmin.assignment.domain.feedback.FeedbackRepository
-import com.simhyeonmin.assignment.domain.feedback.dto.FeedbackDto
+import com.simhyeonmin.assignment.presentation.feedback.dto.FeedbackDto
 import com.simhyeonmin.assignment.domain.user.UserRepository
 import com.simhyeonmin.assignment.global.apiPayload.code.status.ErrorStatus
 import com.simhyeonmin.assignment.global.apiPayload.exception.handler.ChatHandler
