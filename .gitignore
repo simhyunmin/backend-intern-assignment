@@ -1,0 +1,15 @@
+# IDE files
+.idea/
+*.iml
+
+# Build artifacts
+build/
+.gradle/
+*.jar
+
+# Local environment variables
+.env
+
+# Other ignored files
+.DS_Store
+*.log

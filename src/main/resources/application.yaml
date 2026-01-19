@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: backend-assignment
+  profiles:
+    active: local
+  app:
+    ai:
+      api-key: ${AI_API_KEY:}
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: user
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+
+
