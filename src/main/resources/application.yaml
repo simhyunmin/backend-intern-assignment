@@ -31,3 +31,7 @@ spring:
 
 
 
+jwt:
+  secret: your-jwt-secret-key-that-is-at-least-256-bit-long-and-secure # 256비트 이상의 강력한 비밀 키
+  access-token-expiration: 3600000 # 1시간 (밀리초)
+  refresh-token-expiration: 604800000 # 7일 (밀리초)
