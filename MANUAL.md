@@ -23,6 +23,9 @@ git clone https://github.com/simhyunmin/backend-intern-assignment.git
 cd backend-intern-assignment
 ```
 ```bash
+gradle wrapper
+```
+```bash
 ./gradlew bootRun
 ```
 
